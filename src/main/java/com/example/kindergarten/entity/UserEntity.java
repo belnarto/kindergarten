@@ -32,6 +32,7 @@ public class UserEntity {
     private String password;
     private String role;
     private String accountNumber;
+    private String address;
 
     @Override
     public boolean equals(Object o) {
