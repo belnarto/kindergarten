@@ -26,4 +26,13 @@ public class UserController {
     public void deleteUser() {
         userService.delete();
     }
+
+    @PutMapping("/api/user")
+    public void updateUser(@RequestBody UserDto user) {
+
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+
+        userService.update(user);
+    }
 }

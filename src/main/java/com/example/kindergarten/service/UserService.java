@@ -29,6 +29,19 @@ public class UserService implements UserDetailsService {
                 .ifPresent(u -> userRepository.deleteById(u.getId()));
     }
 
+    public void update(UserDto userDto) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) auth.getPrincipal();
+        userRepository.findByUsername(userDetails.getUsername())
+                .map(u -> {
+                    u.setUsername(userDto.getUsername());
+                    u.setPassword(userDto.getPassword());
+                    u.setRole(userDto.getRole());
+                    return u;
+                })
+                .ifPresent(userRepository::save);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
