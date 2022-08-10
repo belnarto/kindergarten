@@ -32,7 +32,7 @@ public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
             .mvcMatchers("/api/child/new").hasRole("ADMIN")
             .mvcMatchers("/api/child/search").hasAnyRole("ADMIN", "USER")
             .mvcMatchers("/api/child/*").permitAll()
-            .mvcMatchers("/register").permitAll()
+            .mvcMatchers("/api/user/register").permitAll()
             .antMatchers("/h2/**").permitAll()
             .mvcMatchers("/**").authenticated()
             .and()

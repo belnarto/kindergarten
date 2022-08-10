@@ -4,23 +4,26 @@ import com.example.kindergarten.dto.UserDto;
 import com.example.kindergarten.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-public class RegistrationController {
+public class UserController {
 
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
 
-    @PostMapping("/register")
+    @PostMapping("/api/user/register")
     public void register(@RequestBody UserDto user) {
 
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
 
         userService.save(user);
+    }
+
+    @DeleteMapping("/api/user")
+    public void deleteUser() {
+        userService.delete();
     }
 }
