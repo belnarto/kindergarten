@@ -15,6 +15,7 @@ public class UserConverter {
             .username(userDto.getUsername())
             .password(userDto.getPassword())
             .role(userDto.getRole())
+            .accountNumber(userDto.getAccountNumber())
             .build();
 
         return Optional.of(userEntity);
@@ -25,7 +26,7 @@ public class UserConverter {
             return Optional.empty();
         }
 
-        UserDto userDto = new UserDto(userEntity.getUsername(), userEntity.getPassword(), userEntity.getRole());
+        UserDto userDto = new UserDto(userEntity.getUsername(), userEntity.getPassword(), userEntity.getRole(), userEntity.getAccountNumber());
         return Optional.of(userDto);
     }
 
