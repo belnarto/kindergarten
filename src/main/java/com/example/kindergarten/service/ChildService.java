@@ -1,18 +1,19 @@
 package com.example.kindergarten.service;
 
-import com.example.kindergarten.dto.Child;
+import com.example.kindergarten.dto.ChildDto;
 import java.util.Collection;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public interface ChildService {
 
-    long save(Child child);
+    long save(ChildDto childDto);
 
-    default Child get(String firstName, String lastName) {
+    default ChildDto get(String firstName, String lastName) {
         return null;
     }
 
-    default Child get(Long id) {
+    default ChildDto get(Long id) {
         return null;
     }
 
@@ -20,31 +21,31 @@ public interface ChildService {
         return false;
     }
 
-    default boolean update(Long id, Child child) {
+    default boolean update(Long id, ChildDto childDto) {
         return false;
     }
 
-    default List<Child> searchByCategory(String category) {
+    default List<ChildDto> searchByCategory(String category) {
         return List.of();
     }
 
-    default List<Child> searchByName(String name) {
+    default List<ChildDto> searchByName(String name) {
         return List.of();
     }
 
-    default List<Child> searchByAge(int minAge, int maxAge) {
+    default List<ChildDto> searchByAge(int minAge, int maxAge) {
         return List.of();
     }
 
-    default Collection<Child> getAllChildrenBySex(String sex) {
+    default Collection<ChildDto> getAllChildrenBySex(String sex) {
         return null;
     }
 
-    default Collection<Child> getAllChildrenBySex2(String sex) {
+    default Collection<ChildDto> getAllChildrenBySex2(String sex) {
         return null;
     }
 
-    default Collection<Child> getAllChildrenBySex3(String sex) {
+    default Collection<ChildDto> getAllChildrenBySex3(String sex) {
         return null;
     }
 }

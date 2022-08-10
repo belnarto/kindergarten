@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Child {
+public class ChildDto {
 
     @NotBlank
     @Size(max = 100)
