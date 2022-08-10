@@ -1,6 +1,6 @@
-package com.example.demoStage2.repository;
+package com.example.kindergarten.repository;
 
-import com.example.demoStage2.entity.ChildEntity;
+import com.example.kindergarten.entity.ChildEntity;
 import java.util.List;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;

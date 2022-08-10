@@ -1,7 +1,7 @@
-package com.example.demoStage2.controller;
+package com.example.kindergarten.controller;
 
-import com.example.demoStage2.dto.UserDto;
-import com.example.demoStage2.service.UserService;
+import com.example.kindergarten.dto.UserDto;
+import com.example.kindergarten.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;

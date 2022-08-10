@@ -1,13 +1,13 @@
-package com.example.demoStage2.service;
+package com.example.kindergarten.service;
 
 import static org.springframework.util.StringUtils.hasText;
 
-import com.example.demoStage2.dto.Child;
-import com.example.demoStage2.entity.ChildEntity;
-import com.example.demoStage2.entity.UserEntity;
-import com.example.demoStage2.exception.NotAllowedException;
-import com.example.demoStage2.repository.ChildRepository;
-import com.example.demoStage2.repository.UserRepository;
+import com.example.kindergarten.dto.Child;
+import com.example.kindergarten.entity.ChildEntity;
+import com.example.kindergarten.entity.UserEntity;
+import com.example.kindergarten.exception.NotAllowedException;
+import com.example.kindergarten.repository.ChildRepository;
+import com.example.kindergarten.repository.UserRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;

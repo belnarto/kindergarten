@@ -1,25 +1,22 @@
-package com.example.demoStage2.controller;
+package com.example.kindergarten.controller;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 
-import com.example.demoStage2.dto.Child;
-import com.example.demoStage2.exception.NotAllowedException;
-import com.example.demoStage2.service.ChildService;
-import com.example.demoStage2.service.ChildServiceImpl;
-import java.util.ArrayList;
+import com.example.kindergarten.dto.Child;
+import com.example.kindergarten.exception.NotAllowedException;
+import com.example.kindergarten.service.ChildService;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;

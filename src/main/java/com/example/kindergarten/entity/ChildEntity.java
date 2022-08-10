@@ -1,10 +1,9 @@
-package com.example.demoStage2.entity;
+package com.example.kindergarten.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

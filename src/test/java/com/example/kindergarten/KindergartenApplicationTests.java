@@ -1,10 +1,10 @@
-package com.example.demoStage2;
+package com.example.kindergarten;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class DemoStage2ApplicationTests {
+class KindergartenApplicationTests {
 
 	@Test
 	void contextLoads() {
