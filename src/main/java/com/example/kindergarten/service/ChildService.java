@@ -1,6 +1,6 @@
-package com.example.demoStage2.service;
+package com.example.kindergarten.service;
 
-import com.example.demoStage2.dto.Child;
+import com.example.kindergarten.dto.Child;
 import java.util.Collection;
 import java.util.List;
 

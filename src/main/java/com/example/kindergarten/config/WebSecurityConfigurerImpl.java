@@ -1,4 +1,4 @@
-package com.example.demoStage2.config;
+package com.example.kindergarten.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

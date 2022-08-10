@@ -1,6 +1,5 @@
-package com.example.demoStage2.dto;
+package com.example.kindergarten.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import java.time.LocalDate;

@@ -1,8 +1,8 @@
-package com.example.demoStage2.service;
+package com.example.kindergarten.service;
 
-import com.example.demoStage2.converter.UserConverter;
-import com.example.demoStage2.dto.UserDto;
-import com.example.demoStage2.repository.UserRepository;
+import com.example.kindergarten.converter.UserConverter;
+import com.example.kindergarten.dto.UserDto;
+import com.example.kindergarten.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

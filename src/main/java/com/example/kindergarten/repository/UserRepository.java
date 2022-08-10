@@ -1,6 +1,6 @@
-package com.example.demoStage2.repository;
+package com.example.kindergarten.repository;
 
-import com.example.demoStage2.entity.UserEntity;
+import com.example.kindergarten.entity.UserEntity;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

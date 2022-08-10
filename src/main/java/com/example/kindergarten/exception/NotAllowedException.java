@@ -1,4 +1,4 @@
-package com.example.demoStage2.exception;
+package com.example.kindergarten.exception;
 
 public class NotAllowedException extends RuntimeException {
 

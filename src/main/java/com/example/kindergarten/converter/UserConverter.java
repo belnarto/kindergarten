@@ -1,7 +1,7 @@
-package com.example.demoStage2.converter;
+package com.example.kindergarten.converter;
 
-import com.example.demoStage2.dto.UserDto;
-import com.example.demoStage2.entity.UserEntity;
+import com.example.kindergarten.dto.UserDto;
+import com.example.kindergarten.entity.UserEntity;
 import java.util.Optional;
 
 public class UserConverter {
