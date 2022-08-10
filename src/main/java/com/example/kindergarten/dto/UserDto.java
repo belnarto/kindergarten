@@ -15,6 +15,7 @@ public class UserDto implements UserDetails {
     private String password;
     private String role;
     private String accountNumber;
+    private String address;
 
     @Override
     public Collection<SimpleGrantedAuthority> getAuthorities() {
