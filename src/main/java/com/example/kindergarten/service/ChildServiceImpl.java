@@ -2,7 +2,7 @@ package com.example.kindergarten.service;
 
 import static org.springframework.util.StringUtils.hasText;
 
-import com.example.kindergarten.dto.Child;
+import com.example.kindergarten.dto.ChildDto;
 import com.example.kindergarten.entity.ChildEntity;
 import com.example.kindergarten.entity.UserEntity;
 import com.example.kindergarten.exception.NotAllowedException;
@@ -26,7 +26,7 @@ public class ChildServiceImpl implements ChildService {
     private final UserRepository userRepository;
 
     @Override
-    public long save(Child childDto) {
+    public long save(ChildDto childDto) {
         ChildEntity childEntity = new ChildEntity();
         setCommonFieldsFromDtoToEntity(childDto, childEntity);
 
@@ -42,7 +42,7 @@ public class ChildServiceImpl implements ChildService {
     }
 
     @Override
-    public Child get(Long id) {
+    public ChildDto get(Long id) {
         Optional<ChildEntity> childByIdOptional = childRepository.findById(id);
 
         if (childByIdOptional.isEmpty()) {
@@ -51,14 +51,14 @@ public class ChildServiceImpl implements ChildService {
 
         ChildEntity childEntity = childByIdOptional.get();
 
-        Child child = new Child();
-        child.setFirstName(childEntity.getFirstName());
-        child.setLastName(childEntity.getLastName());
-        child.setAge(childEntity.getAge());
-        child.setSex(childEntity.getSex());
-        child.setContactPhones(childEntity.getContactPhones());
+        ChildDto childDto = new ChildDto();
+        childDto.setFirstName(childEntity.getFirstName());
+        childDto.setLastName(childEntity.getLastName());
+        childDto.setAge(childEntity.getAge());
+        childDto.setSex(childEntity.getSex());
+        childDto.setContactPhones(childEntity.getContactPhones());
 
-        return child;
+        return childDto;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class ChildServiceImpl implements ChildService {
     }
 
     @Override
-    public boolean update(Long id, Child childDto) {
+    public boolean update(Long id, ChildDto childDto) {
         if (childRepository.existsById(id)) {
             if (isChildOwnedByUser(id, SecurityContextHolder.getContext().getAuthentication())) {
                 ChildEntity childEntity = new ChildEntity();
@@ -92,27 +92,27 @@ public class ChildServiceImpl implements ChildService {
     }
 
     @Override
-    public List<Child> searchByCategory(String category) {
+    public List<ChildDto> searchByCategory(String category) {
         return childRepository.findByCategoryIgnoreCaseOrderByUpdatedAtDesc(category).stream()
             .map(this::setCommonFieldsFromEntityToDto)
             .collect(Collectors.toList());
     }
 
     @Override
-    public List<Child> searchByName(String name) {
+    public List<ChildDto> searchByName(String name) {
         return childRepository.findByPartName(name).stream()
             .map(this::setCommonFieldsFromEntityToDto)
             .collect(Collectors.toList());
     }
 
     @Override
-    public List<Child> searchByAge(int minAge, int maxAge) {
+    public List<ChildDto> searchByAge(int minAge, int maxAge) {
         return childRepository.findByAgeGreaterThanAndAgeLessThanEqualOrderByAgeAsc(minAge, maxAge).stream()
             .map(this::setCommonFieldsFromEntityToDto)
             .collect(Collectors.toList());
     }
 
-    private void setCommonFieldsFromDtoToEntity(Child childDto, ChildEntity childEntity) {
+    private void setCommonFieldsFromDtoToEntity(ChildDto childDto, ChildEntity childEntity) {
         childEntity.setFirstName(childDto.getFirstName());
         childEntity.setLastName(childDto.getLastName());
         childEntity.setAge(childDto.getAge());
@@ -123,8 +123,8 @@ public class ChildServiceImpl implements ChildService {
         childEntity.setUpdatedAt(LocalDateTime.now());
     }
 
-    private Child setCommonFieldsFromEntityToDto(ChildEntity childEntity) {
-        return Child.builder()
+    private ChildDto setCommonFieldsFromEntityToDto(ChildEntity childEntity) {
+        return ChildDto.builder()
             .firstName(childEntity.getFirstName())
             .lastName(childEntity.getLastName())
             .category(childEntity.getCategory())
