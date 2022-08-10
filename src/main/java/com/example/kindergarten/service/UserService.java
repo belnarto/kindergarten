@@ -4,6 +4,8 @@ import com.example.kindergarten.converter.UserConverter;
 import com.example.kindergarten.dto.UserDto;
 import com.example.kindergarten.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,11 +22,18 @@ public class UserService implements UserDetailsService {
                 .ifPresent(userRepository::save);
     }
 
+    public void delete() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) auth.getPrincipal();
+        userRepository.findByUsername(userDetails.getUsername())
+                .ifPresent(u -> userRepository.deleteById(u.getId()));
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByUsername(username)
-            .flatMap(UserConverter::toDto)
-            .orElseThrow(() -> new UsernameNotFoundException("user not found"));
+                .flatMap(UserConverter::toDto)
+                .orElseThrow(() -> new UsernameNotFoundException("user not found"));
     }
 
 }
