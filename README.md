@@ -1,3 +1,3 @@
-# hello everyone, it's kindergarten project
+# hello everyone, it's KINDERGARTEN project
 
 https://still-retreat-07563.herokuapp.com
