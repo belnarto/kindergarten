@@ -8,7 +8,6 @@ import com.example.kindergarten.entity.UserEntity;
 import com.example.kindergarten.exception.NotAllowedException;
 import com.example.kindergarten.repository.ChildRepository;
 import com.example.kindergarten.repository.UserRepository;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -51,14 +50,15 @@ public class ChildServiceImpl implements ChildService {
 
         ChildEntity childEntity = childByIdOptional.get();
 
-        ChildDto childDto = new ChildDto();
-        childDto.setFirstName(childEntity.getFirstName());
-        childDto.setLastName(childEntity.getLastName());
-        childDto.setAge(childEntity.getAge());
-        childDto.setSex(childEntity.getSex());
-        childDto.setContactPhones(childEntity.getContactPhones());
+         ChildDto childDto =  ChildDto.builder()
+                 .firstName(childEntity.getFirstName())
+                 .lastName(childEntity.getLastName())
+                 .age(childEntity.getAge())
+                 .sex(childEntity.getSex())
+                 .contactPhones(childEntity.getContactPhones())
+                 .build();
+         return childDto;
 
-        return childDto;
     }
 
     @Override
@@ -113,14 +113,16 @@ public class ChildServiceImpl implements ChildService {
     }
 
     private void setCommonFieldsFromDtoToEntity(ChildDto childDto, ChildEntity childEntity) {
-        childEntity.setFirstName(childDto.getFirstName());
-        childEntity.setLastName(childDto.getLastName());
-        childEntity.setAge(childDto.getAge());
-        childEntity.setSex(childDto.getSex());
-        childEntity.setContactPhones(childDto.getContactPhones());
-        childEntity.setCategory(childDto.getCategory());
-        childEntity.setBirthdate(childDto.getBirthdate());
-        childEntity.setUpdatedAt(LocalDateTime.now());
+         ChildEntity.builder()
+                .firstName(childDto.getFirstName())
+                .lastName(childDto.getLastName())
+                .category(childDto.getCategory())
+                .age(childDto.getAge())
+                .birthdate(childDto.getBirthdate())
+                .contactPhones(childDto.getContactPhones())
+                .sex(childDto.getSex())
+                .updatedAt(childDto.getUpdatedAt())
+                .build();
     }
 
     private ChildDto setCommonFieldsFromEntityToDto(ChildEntity childEntity) {

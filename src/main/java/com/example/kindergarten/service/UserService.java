@@ -3,6 +3,7 @@ package com.example.kindergarten.service;
 import com.example.kindergarten.converter.UserConverter;
 import com.example.kindergarten.dto.UserDto;
 import com.example.kindergarten.repository.UserRepository;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+
 public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
