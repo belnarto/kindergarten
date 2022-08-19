@@ -51,14 +51,13 @@ public class ChildServiceImpl implements ChildService {
 
         ChildEntity childEntity = childByIdOptional.get();
 
-        ChildDto childDto = ChildDto.builder()
+        return ChildDto.builder()
                 .firstName(childEntity.getFirstName())
                 .lastName(childEntity.getLastName())
                 .age(childEntity.getAge())
                 .sex(childEntity.getSex())
                 .contactPhones(childEntity.getContactPhones())
                 .build();
-        return childDto;
     }
 
     @Override
