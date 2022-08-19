@@ -1,6 +1,8 @@
 package com.example.kindergarten.converter;
 
+import com.example.kindergarten.dto.ChildDto;
 import com.example.kindergarten.dto.UserDto;
+import com.example.kindergarten.entity.ChildEntity;
 import com.example.kindergarten.entity.UserEntity;
 import java.util.Optional;
 
@@ -11,15 +13,14 @@ public class UserConverter {
             return Optional.empty();
         }
 
-        UserEntity userEntity = UserEntity.builder()
-            .username(userDto.getUsername())
-            .password(userDto.getPassword())
-            .role(userDto.getRole())
-            .accountNumber(userDto.getAccountNumber())
-            .address(userDto.getAddress())
-            .build();
-
-        return Optional.of(userEntity);
+        return Optional.ofNullable(UserEntity.builder()
+                .username(userDto.getUsername())
+                .password(userDto.getPassword())
+                .role(userDto.getRole())
+                .accountNumber(userDto.getAccountNumber())
+                .address(userDto.getAddress())
+                .contactPhone(userDto.getContactPhone())
+                .build());
     }
 
     public static Optional<UserDto> toDto(UserEntity userEntity) {
@@ -27,14 +28,14 @@ public class UserConverter {
             return Optional.empty();
         }
 
-        UserDto userDto = UserDto.builder()
+        return Optional.ofNullable(UserDto.builder()
                 .username(userEntity.getUsername())
                 .password(userEntity.getPassword())
                 .role(userEntity.getRole())
                 .accountNumber(userEntity.getAccountNumber())
                 .address(userEntity.getAddress())
-                .build();
-        return Optional.of(userDto);
+                .contactPhone(userEntity.getContactPhone())
+                .build());
     }
 
 }
