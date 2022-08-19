@@ -28,11 +28,11 @@ public class UserEntity {
 
     @Column(name = "username", unique = true)
     private String username;
-
     private String password;
     private String role;
     private String accountNumber;
     private String address;
+    private String contactPhone;
 
     @Override
     public boolean equals(Object o) {

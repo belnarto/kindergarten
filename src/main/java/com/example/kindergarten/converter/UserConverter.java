@@ -17,6 +17,7 @@ public class UserConverter {
             .role(userDto.getRole())
             .accountNumber(userDto.getAccountNumber())
             .address(userDto.getAddress())
+                .contactPhone(userDto.getContactPhone())
             .build();
 
         return Optional.of(userEntity);
@@ -33,6 +34,7 @@ public class UserConverter {
                 .role(userEntity.getRole())
                 .accountNumber(userEntity.getAccountNumber())
                 .address(userEntity.getAddress())
+                .contactPhone(userEntity.getContactPhone())
                 .build();
         return Optional.of(userDto);
     }
