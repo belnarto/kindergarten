@@ -91,6 +91,7 @@ public class ChildServiceImpl implements ChildService {
                 ChildEntity childEntity = setCommonFieldsFromDtoToEntity(childDto);
                 childEntity.setUser(user);
                 childEntity.setId(id);
+                setCommonFieldsFromDtoToEntity(childDto, childEntity);
                 childRepository.save(childEntity);
                 return true;
             } else {
@@ -109,7 +110,7 @@ public class ChildServiceImpl implements ChildService {
 
     @Override
     public List<ChildDto> searchByName(String name) {
-        return childRepository.findByPartName(name).stream()
+        return childRepository.findByFirstNameContainingIgnoreCaseOrderByUpdatedAtDesc(name).stream()
                 .map(this::setCommonFieldsFromEntityToDto)
                 .collect(Collectors.toList());
     }
