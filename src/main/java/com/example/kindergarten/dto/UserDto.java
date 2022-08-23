@@ -8,6 +8,8 @@ import lombok.Data;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.validation.constraints.Pattern;
+
 @Data
 @AllArgsConstructor
 @Builder
@@ -19,6 +21,8 @@ public class UserDto implements UserDetails {
     private String accountNumber;
     private String address;
     private String contactPhone;
+    @Pattern(regexp = "[a-zA-Z0-9_.]+@[a-z0-9]+\\.[a-z]{2,3}")
+    private String email;
 
     @Override
     public Collection<SimpleGrantedAuthority> getAuthorities() {

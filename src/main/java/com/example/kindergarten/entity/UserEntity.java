@@ -33,6 +33,7 @@ public class UserEntity {
     private String accountNumber;
     private String address;
     private String contactPhone;
+    private String email;
 
     @Override
     public boolean equals(Object o) {
