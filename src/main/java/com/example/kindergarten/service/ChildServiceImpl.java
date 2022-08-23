@@ -9,6 +9,10 @@ import com.example.kindergarten.exception.NotAllowedException;
 import com.example.kindergarten.repository.ChildRepository;
 import com.example.kindergarten.repository.UserRepository;
 
+child_repository_refactoring
+
+import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -28,8 +32,7 @@ public class ChildServiceImpl implements ChildService {
 
     @Override
     public long save(ChildDto childDto) {
-        ChildEntity childEntity = new ChildEntity();
-        setCommonFieldsFromDtoToEntity(childDto, childEntity);
+        ChildEntity childEntity = setCommonFieldsFromDtoToEntity(childDto);
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -58,6 +61,9 @@ public class ChildServiceImpl implements ChildService {
                 .age(childEntity.getAge())
                 .sex(childEntity.getSex())
                 .contactPhones(childEntity.getContactPhones())
+                .category(childEntity.getCategory())
+                .birthdate(childEntity.getBirthdate())
+                .updatedAt(childEntity.getUpdatedAt())
                 .build();
     }
 
@@ -79,9 +85,15 @@ public class ChildServiceImpl implements ChildService {
     public boolean update(Long id, ChildDto childDto) {
         if (childRepository.existsById(id)) {
             if (isChildOwnedByUser(id, SecurityContextHolder.getContext().getAuthentication())) {
-                ChildEntity childEntity = new ChildEntity();
+
+                Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+                UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+                UserEntity user = userRepository.findByUsername(userDetails.getUsername())
+                        .orElseThrow(() -> new RuntimeException("user not found"));
+
+                ChildEntity childEntity = setCommonFieldsFromDtoToEntity(childDto);
+                childEntity.setUser(user);
                 childEntity.setId(id);
-                setCommonFieldsFromDtoToEntity(childDto, childEntity);
                 childRepository.save(childEntity);
                 return true;
             } else {
@@ -100,6 +112,7 @@ public class ChildServiceImpl implements ChildService {
 
     @Override
     public List<ChildDto> searchByName(String name) {
+ child_repository_refactoring
         return childRepository.findByFirstNameContainingIgnoreCaseOrderByUpdatedAtDesc(name).stream()
                 .map(this::setCommonFieldsFromEntityToDto)
                 .collect(Collectors.toList());
@@ -112,8 +125,11 @@ public class ChildServiceImpl implements ChildService {
                 .collect(Collectors.toList());
     }
 
-    private void setCommonFieldsFromDtoToEntity(ChildDto childDto, ChildEntity childEntity) {
-        ChildEntity.builder()
+
+
+    private ChildEntity setCommonFieldsFromDtoToEntity(ChildDto childDto) {
+        return ChildEntity.builder()
+
                 .firstName(childDto.getFirstName())
                 .lastName(childDto.getLastName())
                 .category(childDto.getCategory())
@@ -121,7 +137,7 @@ public class ChildServiceImpl implements ChildService {
                 .birthdate(childDto.getBirthdate())
                 .contactPhones(childDto.getContactPhones())
                 .sex(childDto.getSex())
-                .updatedAt(childDto.getUpdatedAt())
+                .updatedAt(LocalDateTime.now())
                 .build();
     }
 
