@@ -8,10 +8,11 @@ import com.example.kindergarten.entity.UserEntity;
 import com.example.kindergarten.exception.NotAllowedException;
 import com.example.kindergarten.repository.ChildRepository;
 import com.example.kindergarten.repository.UserRepository;
-import java.time.LocalDateTime;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -33,7 +34,7 @@ public class ChildServiceImpl implements ChildService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         UserEntity user = userRepository.findByUsername(userDetails.getUsername())
-            .orElseThrow(() -> new RuntimeException("user not found"));
+                .orElseThrow(() -> new RuntimeException("user not found"));
 
         childEntity.setUser(user);
 
@@ -93,26 +94,26 @@ public class ChildServiceImpl implements ChildService {
     @Override
     public List<ChildDto> searchByCategory(String category) {
         return childRepository.findByCategoryIgnoreCaseOrderByUpdatedAtDesc(category).stream()
-            .map(this::setCommonFieldsFromEntityToDto)
-            .collect(Collectors.toList());
+                .map(this::setCommonFieldsFromEntityToDto)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<ChildDto> searchByName(String name) {
-        return childRepository.findByPartName(name).stream()
-            .map(this::setCommonFieldsFromEntityToDto)
-            .collect(Collectors.toList());
+        return childRepository.findByFirstNameContainingIgnoreCaseOrderByUpdatedAtDesc(name).stream()
+                .map(this::setCommonFieldsFromEntityToDto)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<ChildDto> searchByAge(int minAge, int maxAge) {
         return childRepository.findByAgeGreaterThanAndAgeLessThanEqualOrderByAgeAsc(minAge, maxAge).stream()
-            .map(this::setCommonFieldsFromEntityToDto)
-            .collect(Collectors.toList());
+                .map(this::setCommonFieldsFromEntityToDto)
+                .collect(Collectors.toList());
     }
 
     private void setCommonFieldsFromDtoToEntity(ChildDto childDto, ChildEntity childEntity) {
-         ChildEntity.builder()
+        ChildEntity.builder()
                 .firstName(childDto.getFirstName())
                 .lastName(childDto.getLastName())
                 .category(childDto.getCategory())
@@ -126,23 +127,23 @@ public class ChildServiceImpl implements ChildService {
 
     private ChildDto setCommonFieldsFromEntityToDto(ChildEntity childEntity) {
         return ChildDto.builder()
-            .firstName(childEntity.getFirstName())
-            .lastName(childEntity.getLastName())
-            .category(childEntity.getCategory())
-            .age(childEntity.getAge())
-            .birthdate(childEntity.getBirthdate())
-            .contactPhones(childEntity.getContactPhones())
-            .sex(childEntity.getSex())
-            .updatedAt(childEntity.getUpdatedAt())
-            .build();
+                .firstName(childEntity.getFirstName())
+                .lastName(childEntity.getLastName())
+                .category(childEntity.getCategory())
+                .age(childEntity.getAge())
+                .birthdate(childEntity.getBirthdate())
+                .contactPhones(childEntity.getContactPhones())
+                .sex(childEntity.getSex())
+                .updatedAt(childEntity.getUpdatedAt())
+                .build();
     }
 
     private boolean isChildOwnedByUser(Long childId, Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         return childRepository.findById(childId)
-            .map(childEntity -> childEntity.getUser() != null &&
-                hasText(childEntity.getUser().getUsername()) &&
-                childEntity.getUser().getUsername().equalsIgnoreCase(userDetails.getUsername()))
-            .orElse(false);
+                .map(childEntity -> childEntity.getUser() != null &&
+                        hasText(childEntity.getUser().getUsername()) &&
+                        childEntity.getUser().getUsername().equalsIgnoreCase(userDetails.getUsername()))
+                .orElse(false);
     }
 }
