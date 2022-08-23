@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -14,7 +16,7 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/api/user/register")
-    public void register(@RequestBody UserDto user) {
+    public void register(@RequestBody @Valid UserDto user) {
 
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);

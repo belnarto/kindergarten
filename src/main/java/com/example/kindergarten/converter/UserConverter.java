@@ -4,6 +4,7 @@ import com.example.kindergarten.dto.ChildDto;
 import com.example.kindergarten.dto.UserDto;
 import com.example.kindergarten.entity.ChildEntity;
 import com.example.kindergarten.entity.UserEntity;
+
 import java.util.Optional;
 
 public class UserConverter {
@@ -20,6 +21,7 @@ public class UserConverter {
                 .accountNumber(userDto.getAccountNumber())
                 .address(userDto.getAddress())
                 .contactPhone(userDto.getContactPhone())
+                .email(userDto.getEmail())
                 .build());
     }
 
@@ -35,6 +37,7 @@ public class UserConverter {
                 .accountNumber(userEntity.getAccountNumber())
                 .address(userEntity.getAddress())
                 .contactPhone(userEntity.getContactPhone())
+                .email(userEntity.getEmail())
                 .build());
     }
 
