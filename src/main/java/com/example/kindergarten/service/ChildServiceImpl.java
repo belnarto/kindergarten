@@ -91,7 +91,6 @@ public class ChildServiceImpl implements ChildService {
                 ChildEntity childEntity = setCommonFieldsFromDtoToEntity(childDto);
                 childEntity.setUser(user);
                 childEntity.setId(id);
-                setCommonFieldsFromDtoToEntity(childDto, childEntity);
                 childRepository.save(childEntity);
                 return true;
             } else {
