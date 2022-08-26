@@ -109,7 +109,7 @@ public class ChildServiceImpl implements ChildService {
 
     @Override
     public List<ChildDto> searchByName(String name) {
-        return childRepository.findByPartName(name).stream()
+        return childRepository.findByFirstNameContainingIgnoreCaseOrderByUpdatedAtDesc(name).stream()
                 .map(this::setCommonFieldsFromEntityToDto)
                 .collect(Collectors.toList());
     }

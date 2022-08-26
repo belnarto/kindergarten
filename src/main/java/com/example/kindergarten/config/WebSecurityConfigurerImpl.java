@@ -19,7 +19,7 @@ public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)
-            .passwordEncoder(getEncoder());
+                .passwordEncoder(getEncoder());
     }
 
     @Override
@@ -28,15 +28,15 @@ public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
 
         http
-            .authorizeRequests()
-            .mvcMatchers("/api/child/new").hasRole("ADMIN")
-            .mvcMatchers("/api/child/search").hasAnyRole("ADMIN", "USER")
-            .mvcMatchers("/api/child/*").permitAll()
-            .mvcMatchers("/api/user/register").permitAll()
-            .antMatchers("/h2/**").permitAll()
-            .mvcMatchers("/**").authenticated()
-            .and()
-            .httpBasic();
+                .authorizeRequests()
+                .mvcMatchers("/api/child/new").hasRole("ADMIN")
+                .mvcMatchers("/api/child/search").hasAnyRole("ADMIN", "USER")
+                .mvcMatchers("/api/child/*").permitAll()
+                .mvcMatchers("/api/user/register").permitAll()
+                .antMatchers("/h2/**").permitAll()
+                .mvcMatchers("/**").authenticated()
+                .and()
+                .httpBasic();
     }
 
     @Bean
