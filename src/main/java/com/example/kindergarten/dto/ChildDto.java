@@ -1,11 +1,15 @@
 package com.example.kindergarten.dto;
 
+import com.example.kindergarten.enums.SexEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -33,8 +37,7 @@ public class ChildDto {
     @Positive
     private int age;
 
-    @NotBlank(message = "sex should be not blank")
-    private String sex;
+    private SexEnum sex;
 
     @NotBlank
     private String category;
