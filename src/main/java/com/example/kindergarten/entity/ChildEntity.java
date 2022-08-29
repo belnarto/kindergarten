@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.*;
 
-import com.example.kindergarten.enums.SexEnum;
+import com.example.kindergarten.enums.Gender;
 import lombok.*;
 
 @Entity
@@ -23,9 +23,11 @@ public class ChildEntity {
     private String firstName;
     private String lastName;
     private int age;
+
     @Column(name = "SEX", nullable = false)
     @Enumerated(EnumType.STRING)
-    private SexEnum sex;
+
+    private Gender sex;
     private String category;
     private LocalDate birthdate;
     private LocalDateTime updatedAt;

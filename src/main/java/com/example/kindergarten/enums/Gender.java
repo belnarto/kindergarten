@@ -1,15 +1,10 @@
 package com.example.kindergarten.enums;
 
 import lombok.*;
-
 @Getter
 
-public enum SexEnum {
+public enum Gender {
     MALE, FEMALE;
-    String sex;
-
-    SexEnum() {
-    }
 
 }
 
