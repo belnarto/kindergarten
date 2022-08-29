@@ -24,7 +24,7 @@ public class ChildEntity {
     private String lastName;
     private int age;
 
-    @Column(name = "SEX", nullable = false)
+    @Column(name = "GENDER", nullable = false)
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
