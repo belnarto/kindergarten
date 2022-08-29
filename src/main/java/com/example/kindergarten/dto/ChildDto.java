@@ -34,7 +34,8 @@ public class ChildDto {
     @Positive
     private int age;
 
-    private Gender sex;
+    @NotNull
+    private Gender gender;
 
     @NotBlank
     private String category;

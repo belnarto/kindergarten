@@ -26,7 +26,7 @@ public class ChildEntity {
 
     @Column(name = "SEX", nullable = false)
     @Enumerated(EnumType.STRING)
-    private Gender sex;
+    private Gender gender;
 
     private String category;
     private LocalDate birthdate;

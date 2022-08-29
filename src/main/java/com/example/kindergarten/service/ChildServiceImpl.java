@@ -56,7 +56,7 @@ public class ChildServiceImpl implements ChildService {
                 .firstName(childEntity.getFirstName())
                 .lastName(childEntity.getLastName())
                 .age(childEntity.getAge())
-                .sex(childEntity.getSex())
+                .gender(childEntity.getGender())
                 .contactPhones(childEntity.getContactPhones())
                 .category(childEntity.getCategory())
                 .birthdate(childEntity.getBirthdate())
@@ -129,7 +129,7 @@ public class ChildServiceImpl implements ChildService {
                 .age(childDto.getAge())
                 .birthdate(childDto.getBirthdate())
                 .contactPhones(childDto.getContactPhones())
-                .sex(childDto.getSex())
+                .gender(childDto.getGender())
                 .updatedAt(LocalDateTime.now())
                 .build();
     }
@@ -142,7 +142,7 @@ public class ChildServiceImpl implements ChildService {
                 .age(childEntity.getAge())
                 .birthdate(childEntity.getBirthdate())
                 .contactPhones(childEntity.getContactPhones())
-                .sex(childEntity.getSex())
+                .gender(childEntity.getGender())
                 .updatedAt(childEntity.getUpdatedAt())
                 .build();
     }
