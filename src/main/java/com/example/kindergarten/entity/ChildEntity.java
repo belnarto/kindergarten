@@ -3,13 +3,9 @@ package com.example.kindergarten.entity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
+import com.example.kindergarten.enums.Gender;
 import lombok.*;
 
 @Entity
@@ -27,7 +23,11 @@ public class ChildEntity {
     private String firstName;
     private String lastName;
     private int age;
-    private String sex;
+
+    @Column(name = "GENDER", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
     private String category;
     private LocalDate birthdate;
     private LocalDateTime updatedAt;

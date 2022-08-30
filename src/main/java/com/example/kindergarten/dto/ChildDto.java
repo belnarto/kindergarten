@@ -1,5 +1,6 @@
 package com.example.kindergarten.dto;
 
+import com.example.kindergarten.enums.Gender;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -33,8 +34,8 @@ public class ChildDto {
     @Positive
     private int age;
 
-    @NotBlank(message = "sex should be not blank")
-    private String sex;
+    @NotNull
+    private Gender gender;
 
     @NotBlank
     private String category;
