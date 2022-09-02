@@ -17,9 +17,21 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
+    public void setAdminRole(String username) {
+        userRepository.findByUsername(username)
+                .map(u -> {
+                    u.setRole("ROLE_ADMIN");
+                    return u;
+                })
+                .ifPresent(userRepository::save);
+    }
+
     public void save(UserDto userDto) {
         UserConverter.toEntity(userDto)
-                .ifPresent(userRepository::save);
+                .ifPresent(entity -> {
+                    entity.setRole("ROLE_USER");
+                    userRepository.save(entity);
+                });
     }
 
     public void delete() {
@@ -36,7 +48,6 @@ public class UserService implements UserDetailsService {
                 .map(u -> {
                     u.setUsername(userDto.getUsername());
                     u.setPassword(userDto.getPassword());
-                    u.setRole(userDto.getRole());
                     return u;
                 })
                 .ifPresent(userRepository::save);
