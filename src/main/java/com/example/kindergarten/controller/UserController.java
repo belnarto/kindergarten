@@ -29,12 +29,11 @@ public class UserController {
     }
 
     @PutMapping("/api/user/admin/{username}")
-    //public void getChild(@PathVariable String username) {
     public void setAdminRole(@PathVariable String username) {
             userService.setAdminRole(username);
     }
 
-    @DeleteMapping("/api/user/remove")
+    @DeleteMapping("/api/user")
     public void deleteUser() {
         userService.delete();
     }

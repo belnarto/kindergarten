@@ -17,7 +17,7 @@ public class UserConverter {
         return Optional.ofNullable(UserEntity.builder()
                 .username(userDto.getUsername())
                 .password(userDto.getPassword())
-                .role("ROLE_USER")
+                .role(userDto.getRole())
                 .accountNumber(userDto.getAccountNumber())
                 .address(userDto.getAddress())
                 .contactPhone(userDto.getContactPhone())

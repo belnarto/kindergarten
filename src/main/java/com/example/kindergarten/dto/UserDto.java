@@ -22,6 +22,7 @@ public class UserDto implements UserDetails {
     private String accountNumber;
     private String address;
     private String contactPhone;
+
     @Pattern(regexp = "[a-zA-Z0-9_.]+@[a-z0-9]+\\.[a-z]{2,3}")
     private String email;
 

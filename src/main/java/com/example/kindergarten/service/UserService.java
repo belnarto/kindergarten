@@ -28,7 +28,10 @@ public class UserService implements UserDetailsService {
 
     public void save(UserDto userDto) {
         UserConverter.toEntity(userDto)
-                .ifPresent(userRepository::save);
+                .ifPresent(entity -> {
+                    entity.setRole("ROLE_USER");
+                    userRepository.save(entity);
+                });
     }
 
     public void delete() {
@@ -45,7 +48,6 @@ public class UserService implements UserDetailsService {
                 .map(u -> {
                     u.setUsername(userDto.getUsername());
                     u.setPassword(userDto.getPassword());
-                    u.setRole(userDto.getRole());
                     return u;
                 })
                 .ifPresent(userRepository::save);
