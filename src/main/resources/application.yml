@@ -28,3 +28,8 @@ logging:
     org:
       springframework:
         security: DEBUG
+
+bot:
+  name: KindergartenTelegramBot
+  token: 5485186120:AAGkPBOiom-37LW7YmLM_igkZW6MX87U3eQ
+
