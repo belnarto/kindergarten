@@ -35,8 +35,8 @@ public class UserService implements UserDetailsService {
     }
 
     public void delete() {
-        Authentication auth3 = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) auth3.getPrincipal();
+        Authentication auth4 = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) auth4.getPrincipal();
         userRepository.findByUsername(userDetails.getUsername())
                 .ifPresent(u -> userRepository.deleteById(u.getId()));
     }
